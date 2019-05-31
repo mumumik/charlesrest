@@ -22,7 +22,6 @@ import com.mitrais.javabootcamp.charles.rest.BookRestController;
 import com.mitrais.javabootcamp.charles.service.BookServiceImpl;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(BookRestController.class)
@@ -66,20 +65,6 @@ public class BookRestControllerTest {
 		mockMvc.perform(
 				MockMvcRequestBuilders.get("/books/?bookTitle=robin"))
 				.andExpect(content().json("[{id:1,isbn:'978-979-2763-37-9',title:'ROBIN HOOD',author:'Paul Creswick',status:'NOT_SHELVED'}]"));
-		
-	}
-	
-	@Test
-	public void get_booksByTitle_ReturnsRuntimeException() throws Exception{
-		
-		//setup
-		Set<Book> bookList = new HashSet<>();
-		when(bookService.findByTitle(anyString())).thenReturn(bookList);
-		
-		//action & assertion
-		mockMvc.perform(
-				MockMvcRequestBuilders.get("/books/?bookTitle=robin"))
-				.andExpect(status().isNotFound());
 		
 	}
 	
