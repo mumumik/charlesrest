@@ -36,13 +36,13 @@ public class BookServiceImpl implements BookService {
 		
 		Optional<Book> result = bookRepository.findById(theId);
 		
-//		Book theBook = null;
+		Book theBook = null;
 		
-//		if(result.isPresent()){
-		Book theBook = result.get();
-//		}else {
-//			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Book Id not found - " + theId);
-//		}
+		if(result.isPresent()){
+			theBook = result.get();
+		}else {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Book Id not found - " + theId);
+		}
 		
 		return theBook;
 	}
