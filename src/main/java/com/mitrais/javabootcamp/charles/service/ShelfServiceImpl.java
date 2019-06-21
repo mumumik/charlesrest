@@ -37,13 +37,13 @@ public class ShelfServiceImpl implements ShelfService {
 		
 		Optional<Shelf> result = shelfRepository.findById(theId);
 		
-		//Shelf theShelf = null;
+		Shelf theShelf = null;
 		
-		//if(result.isPresent()) {
-		Shelf	theShelf = result.get();
-		//}else {
-		//	throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Shelf Id not found - " + theId);
-		//}
+		if(result.isPresent()) {
+			theShelf = result.get();
+		}else {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Shelf Id not found - " + theId);
+		}
 		
 		return theShelf;
 	}
